@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PopoverObjC_Example' do
+  pod 'PopoverObjC', :path => '../'
+
+  target 'PopoverObjC_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

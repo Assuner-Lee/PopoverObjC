@@ -1,0 +1,6 @@
+framework module PopoverObjC {
+  umbrella header "PopoverObjC-umbrella.h"
+
+  export *
+  module * { export * }
+}

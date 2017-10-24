@@ -1,4 +1,5 @@
 # PopoverObjC
+#### Objc version of Popover (https://github.com/corin8823/Popover)
 
 [![CI Status](http://img.shields.io/travis/Assuner-Lee/PopoverObjC.svg?style=flat)](https://travis-ci.org/Assuner-Lee/PopoverObjC)
 [![Version](https://img.shields.io/cocoapods/v/PopoverObjC.svg?style=flat)](http://cocoapods.org/pods/PopoverObjC)
@@ -22,7 +23,7 @@ pod 'PopoverObjC'
 
 ## Author
 
-Assuner-Lee, yongguang.li@ele.me
+Assuner-Lee, assuner@foxmail.com
 
 ## License
 

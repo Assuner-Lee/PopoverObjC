@@ -28,4 +28,5 @@ typedef void (^ASPopoverBlock)(void);
 - (void)show:(UIView *)contentView atPoint:(CGPoint)point;
 - (void)show:(UIView *)contentView atPoint:(CGPoint)point inView:(UIView *)inView;
 - (CGPoint)orignArrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView;
+- (CGPoint)arrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView inView:(UIView *)inView popoverType:(ASPopoverType)type;
 @end

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PopoverObjC'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'ObjC version of popover(https://github.com/corin8823/Popover).'
 
 # This description is used to generate tags and improve search results.

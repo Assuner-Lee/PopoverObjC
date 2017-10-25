@@ -137,8 +137,6 @@
   return [self arrowPointWithView:contentView fromView:fromView inView:keyWindow popoverType:_option.popoverType];
 }
 
-#pragma - private
-
 - (CGPoint)arrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView inView:(UIView *)inView popoverType:(ASPopoverType)type {
   CGPoint point;
   switch (type) {
@@ -152,6 +150,9 @@
   }
   return point;
 }
+
+#pragma - private
+
 
 - (void)createHighlightLayerFromView:(UIView *)fromView inView:(UIView *)inView {
   UIBezierPath *path = [UIBezierPath bezierPathWithRect:inView.bounds];

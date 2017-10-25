@@ -15,7 +15,7 @@
     _animationIn = 0.6;
     _animationOut = 0.3;
     _cornerRadius = 2.0;
-    _sideEdge = 20.0;
+    _sideEdge = 10.0;
     _popoverType = ASPopoverTypeDown;
     _blackOverlayColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     _popoverColor = [UIColor lightGrayColor];

@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIControl *blackOverLay;
 
+@property (nonatomic, assign) CGRect cacheFrame;
+
 @end
 
 @implementation ASPopover
@@ -45,16 +47,6 @@
 
 #pragma - public
 
-- (void)showAsDialog:(UIView *)contentView {
-  [self showAsDialog:contentView inView:keyWindow];
-}
-
-- (void)showAsDialog:(UIView *)contentView inView:(UIView *)inView {
-  _option.arrowSize = CGSizeZero;
-  CGPoint point = CGPointMake(inView.center.x, inView.center.y - contentView.frame.size.height / 2);
-  [self show:contentView atPoint:point inView:inView];
-}
-
 - (void)show:(UIView *)contentView fromView:(UIView *)fromView {
   [self show:contentView fromView:fromView inView:keyWindow];
 }
@@ -81,6 +73,7 @@
 }
 
 - (void)show:(UIView *)contentView atPoint:(CGPoint)point inView:(UIView *)inView {
+  _cacheFrame = contentView.frame;
   if (_option.dismissOnBlackOverlayTap || _option.showBlackOverlay) {
     self.blackOverLay .autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.blackOverLay.frame = inView.bounds;
@@ -129,11 +122,12 @@
       if (self.didDismissHandler) {
         self.didDismissHandler();
       }
+      _contentView.frame = self.cacheFrame;
     }];
   }
 }
 
-- (CGPoint)orignArrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView {
+- (CGPoint)originArrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView {
   return [self arrowPointWithView:contentView fromView:fromView inView:keyWindow popoverType:_option.popoverType];
 }
 
@@ -269,7 +263,7 @@
   #define selfArrowWidth _option.arrowSize.width
   #define selfArrowHeight _option.arrowSize.height
   #define selfCornerRadius _option.cornerRadius
-  //[super drawRect:rect];
+  [super drawRect:rect];
   UIBezierPath *arrow = [UIBezierPath bezierPath];
   UIColor *color = _option.popoverColor;
   CGPoint arrowPoint = [self.containerView convertPoint:self.arrowShowPoint toView:self];

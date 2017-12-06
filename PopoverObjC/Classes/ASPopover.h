@@ -20,13 +20,15 @@ typedef void (^ASPopoverBlock)(void);
 @property (nonatomic, strong) ASPopoverOption *option;
 
 - (instancetype)initWithOption:(ASPopoverOption *)option;
+
 - (void)dismiss;
-- (void)showAsDialog:(UIView *)contentView;
-- (void)showAsDialog:(UIView *)contentView inView:(UIView *)inView;
+
 - (void)show:(UIView *)contentView fromView:(UIView *)fromView;
 - (void)show:(UIView *)contentView fromView:(UIView *)fromView inView:(UIView *)inView;
 - (void)show:(UIView *)contentView atPoint:(CGPoint)point;
 - (void)show:(UIView *)contentView atPoint:(CGPoint)point inView:(UIView *)inView;
-- (CGPoint)orignArrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView;
+
+- (CGPoint)originArrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView;
 - (CGPoint)arrowPointWithView:(UIView *)contentView fromView:(UIView *)fromView inView:(UIView *)inView popoverType:(ASPopoverType)type;
+
 @end

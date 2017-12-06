@@ -78,7 +78,7 @@
   UIView *itemView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"]; // you should use custome view in item;
   if (itemView) {
 //    [self.itemPopover show:view fromView:itemView];
-    CGPoint orignPoint = [self.itemPopover orignArrowPointWithView:view fromView:itemView];
+    CGPoint orignPoint = [self.itemPopover originArrowPointWithView:view fromView:itemView];
     orignPoint.y += 5;
     [self.itemPopover show:view atPoint:orignPoint];
   }

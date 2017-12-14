@@ -10,8 +10,7 @@ env:
     - LANG=en_US.UTF-8
     - LC_ALL=en_US.UTF-8
     - WORKSPACE_NAME=`sudo find ./ -name "*.xcworkspace" -type f |while read var; do echo $(basename $var .xcworkspace); done`
-    # matrix:
-  #   - SCHEME="LPDAdditionsKit-Example"
+    # the file named '*.xcworkspace' should be created by 'pod lib create...'
 
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
@@ -24,7 +23,13 @@ script:
   #- xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   #- xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   #- pod lib lint --allow-warnings --verbose
-  - xcodebuild -workspace Example/$WORKSPACE_NAME.xcworkspace  -scheme $WORKSPACE_NAME-Example -destination 'platform=iOS Simulator,OS=11.0,name=iPhone 7' test
+  - xcodebuild -workspace Example/$WORKSPACE_NAME.xcworkspace -scheme $WORKSPACE_NAME-Example \
+  -destination 'platform=iOS Simulator,OS=11.0,name=iPhone 8' \
+  -destination 'platform=iOS Simulator,OS=8.3,name=iPhone 6' \
+  -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6s' \
+  -destination 'platform=iOS Simulator,OS=10.3,name=iPhone 7' \
+  test
+
   - pod lib lint --allow-warnings --verbose
 
 after_success:

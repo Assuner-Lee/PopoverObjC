@@ -11,10 +11,10 @@ env:
     - LC_ALL=en_US.UTF-8
     - WORKSPACE_NAME=`sudo find ./ -name "*.xcworkspace" -type f |while read var; do echo $(basename $var .xcworkspace); done`
     # the file named '*.xcworkspace' should be created by 'pod lib create...'
-    - iOS_8 = "-destination 'platform=iOS Simulator,OS=8.3,name=iPhone 6'"
-    - iOS_9 = "-destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6S'"
-    - iOS_10 = "-destination 'platform=iOS Simulator,OS=10.3,name=iPhone 7'"
-    - iOS_11 = "-destination 'platform=iOS Simulator,OS=11.0,name=iPhone 8'"
+    - iOS_8="-destination 'platform=iOS Simulator,OS=8.3,name=iPhone 6'"
+    - iOS_9="-destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6S'"
+    - iOS_10="-destination 'platform=iOS Simulator,OS=10.3,name=iPhone 7'"
+    - iOS_11="-destination 'platform=iOS Simulator,OS=11.0,name=iPhone 8'"
 
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet

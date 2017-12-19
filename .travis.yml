@@ -30,6 +30,6 @@ script:
   - pod lib lint --allow-warnings --verbose
 
 after_success:
-  - sleep 3
   - slather
-  - bash <(curl -s https://codecov.io/bash) -f Example/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
+  - bash <(curl -s https://codecov.io/bash) -f Example/cobertura.xml -X coveragepy -X gcov -X xcode -t
+  - sleep 3

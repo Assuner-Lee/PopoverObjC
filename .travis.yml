@@ -16,12 +16,8 @@ before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
   - gem install slather --pre --no-rdoc --no-ri --no-document --quiet
-  - gem install bundler --pre --no-rdoc --no-ri --no-document --quiet
   - pod install --project-directory=Example
   - rvm use $RVM_RUBY_VERSION
-
-install:
-  - bundle install --without=documentation --path ../travis_bundle_dir
 
 
 script:

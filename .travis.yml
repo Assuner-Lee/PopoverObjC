@@ -31,5 +31,5 @@ script:
 
 after_success:
   - slather
-  - bash <(curl -s https://codecov.io/bash) -f Example/cobertura.xml -X coveragepy -X gcov -X xcode -t
+  - bash <(curl -s https://codecov.io/bash) #-f Example/cobertura.xml -X coveragepy -X gcov -X xcode -t
   - sleep 3

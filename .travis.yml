@@ -10,15 +10,18 @@ env:
     - LANG=en_US.UTF-8
     - LC_ALL=en_US.UTF-8
     - WORKSPACE_NAME=`sudo find ./Example -name "*.xcworkspace" -maxdepth 1 |while read var; do echo $(basename $var .xcworkspace); done`
-    - d1='platform=iOS Simulator,OS=latest,name=iPhone 8'
-    - d2='platform=iOS Simulator,OS=10.3.1,name=iPhone 7'
-    - d3='platform=iOS Simulator,OS=9.3,name=iPhone 6s'
     # the file named '*.xcworkspace' should be created by 'pod lib create...'
 
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - gem install slather --pre --no-rdoc --no-ri --no-document --quiet
   - pod install --project-directory=Example
+  - rvm use $RVM_RUBY_VERSION
+
+install:
+  - bundle install --without=documentation --path ../travis_bundle_dir
+
 
 script:
   - set -o pipefail
@@ -26,8 +29,10 @@ script:
   #- xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   #- xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   #- pod lib lint --allow-warnings --verbose
-  - xcodebuild test -enableCodeCoverage YES -workspace Example/$WORKSPACE_NAME.xcworkspace -scheme $WORKSPACE_NAME-Example -destination "$d1"  -destination "$d2" -destination "$d3"
+  - xcodebuild test -enableCodeCoverage YES -workspace Example/$WORKSPACE_NAME.xcworkspace -scheme $WORKSPACE_NAME-Example -destination 'platform=iOS Simulator,OS=latest,name=iPhone 8'  -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 7' -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6s'
   - pod lib lint --allow-warnings --verbose
 
 after_success:
   - sleep 3
+  - slather
+  - bash <(curl -s https://codecov.io/bash) -f Example/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode

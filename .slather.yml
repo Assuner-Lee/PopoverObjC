@@ -1,8 +1,7 @@
 coverage_service: cobertura_xml
-xcworkspace: Example/PopoverObjC.xcworkspace
+workspace: Example/PopoverObjC.xcworkspace
 xcodeproj: Example/PopoverObjC.xcodeproj
 scheme: PopoverObjC-Example
-configuration: TestedConfiguration
 source_directory: Example/
 output_directory: Example/
 ignore:

@@ -96,14 +96,14 @@
         [self.blackOverLay addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
       }
     }
-    self.containerView = inView;
-    self.contentView = contentView;
-    self.contentView.backgroundColor = [UIColor clearColor];
-    self.contentView.layer.cornerRadius = _option.cornerRadius;
-    self.contentView.layer.masksToBounds = YES;
-    self.arrowShowPoint = point;
-    [self show];
   }
+  self.containerView = inView;
+  self.contentView = contentView;
+  self.contentView.backgroundColor = [UIColor clearColor];
+  self.contentView.layer.cornerRadius = _option.cornerRadius;
+  self.contentView.layer.masksToBounds = YES;
+  self.arrowShowPoint = point;
+  [self show];
 }
 
 - (void)dismiss {
@@ -136,12 +136,12 @@
   switch (type) {
     case ASPopoverTypeUp: {
       point = [inView convertPoint:CGPointMake(fromView.frame.origin.x + (fromView.frame.size.width / 2), fromView.frame.origin.y) fromView:fromView.superview];
-      point.y -= fabs(_option.offset);
+      point = CGPointMake(point.x, point.y - fabs(_option.offset));
     } break;
       
     case ASPopoverTypeDown: {
       point = [inView convertPoint:CGPointMake(fromView.frame.origin.x + (fromView.frame.size.width / 2), fromView.frame.origin.y + fromView.frame.size.height) fromView:fromView.superview];
-      point.y += fabs(_option.offset);
+      point = CGPointMake(point.x, point.y + fabs(_option.offset));
     } break;
   }
   return point;

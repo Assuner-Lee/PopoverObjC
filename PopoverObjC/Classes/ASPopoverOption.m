@@ -12,10 +12,12 @@
 - (instancetype)init {
   if (self = [super init]) {
     _arrowSize = CGSizeMake(10, 7);
+    _offset = 0.0;
     _animationIn = 0.6;
     _animationOut = 0.3;
     _cornerRadius = 2.0;
-    _sideEdge = 10.0;
+    _sideEdge = 5.0;
+    _autoAjustDirection = NO;
     _popoverType = ASPopoverTypeDown;
     _blackOverlayColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     _popoverColor = [UIColor lightGrayColor];
@@ -25,7 +27,6 @@
     _initialSpringVelocity = 3.0;
     _highlightFromView = NO;
     _highlightCornerRadius = 0.0;
-    _autoAjustDirection = NO;
   }
   return self;
 }

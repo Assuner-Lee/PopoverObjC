@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, ASPopoverType) {
 @interface ASPopoverOption : NSObject
 
 @property (nonatomic, assign) CGSize arrowSize;
+@property (nonatomic, assign) CGFloat offset; // vertical offset from original show point, default is 0.
 @property (nonatomic, assign) NSTimeInterval animationIn; // if 0, no animation
 @property (nonatomic, assign) NSTimeInterval animationOut;
 @property (nonatomic, assign) CGFloat cornerRadius;

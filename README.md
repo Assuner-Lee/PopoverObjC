@@ -1,4 +1,4 @@
-# PopoverObjC
+![](https://github.com/Assuner-Lee/resource/blob/master/popoverobjc.png)
 #### Objc version of Popover (https://github.com/corin8823/Popover)
 
 [![CI Status](http://img.shields.io/travis/Assuner-Lee/PopoverObjC.svg?style=flat)](https://travis-ci.org/Assuner-Lee/PopoverObjC)
@@ -56,13 +56,13 @@
 - (ASPopover *)itemPopover {
   if (!_itemPopover) {
     ASPopoverOption *option = [[ASPopoverOption alloc] init];
-    option.autoAjustDirection = NO;
+    option.autoAjustDirection = YES;
     option.arrowSize = CGSizeMake(10, 6);
+    option.offset = 3;  // vertical offset from original show point, default is 0.
     option.blackOverlayColor = [UIColor clearColor];
     option.sideEdge = 7;
     option.dismissOnBlackOverlayTap = YES;
     option.popoverColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-    option.autoAjustDirection = YES;
     option.animationIn = 0.4;
     option.springDamping = 0.5;
     option.initialSpringVelocity = 1;
@@ -83,10 +83,15 @@
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
   UIView *itemView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"]; // you should use custom view in item;
   if (itemView) {
-//    [self.itemPopover show:view fromView:itemView];
-    CGPoint orignPoint = [self.itemPopover orignArrowPointWithView:view fromView:itemView];
-    orignPoint.y += 5;
-    [self.itemPopover show:view atPoint:orignPoint];
+  [self.itemPopover show:view fromView:itemView]; // above, option has contained offset value; invoke [self show:contentView fromView:fromView inView:keyWindow];
+  
+  /* other method to show
+  
+   CGPoint orignPoint = [self.itemPopover orignArrowPointWithView:view fromView:itemView];
+   orignPoint.y += 5; // offset in option has same effect
+   [self.itemPopover show:view atPoint:orignPoint];
+   
+   */
   }
 }
 @end

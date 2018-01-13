@@ -95,15 +95,15 @@
       if (_option.dismissOnBlackOverlayTap) {
         [self.blackOverLay addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
       }
+    }
+    self.containerView = inView;
+    self.contentView = contentView;
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.layer.cornerRadius = _option.cornerRadius;
+    self.contentView.layer.masksToBounds = YES;
+    self.arrowShowPoint = point;
+    [self show];
   }
-  self.containerView = inView;
-  self.contentView = contentView;
-  self.contentView.backgroundColor = [UIColor clearColor];
-  self.contentView.layer.cornerRadius = _option.cornerRadius;
-  self.contentView.layer.masksToBounds = YES;
-  self.arrowShowPoint = point;
-  [self show];
- }
 }
 
 - (void)dismiss {
@@ -136,10 +136,12 @@
   switch (type) {
     case ASPopoverTypeUp: {
       point = [inView convertPoint:CGPointMake(fromView.frame.origin.x + (fromView.frame.size.width / 2), fromView.frame.origin.y) fromView:fromView.superview];
+      point.y -= fabs(_option.offset);
     } break;
       
     case ASPopoverTypeDown: {
       point = [inView convertPoint:CGPointMake(fromView.frame.origin.x + (fromView.frame.size.width / 2), fromView.frame.origin.y + fromView.frame.size.height) fromView:fromView.superview];
+      point.y += fabs(_option.offset);
     } break;
   }
   return point;
@@ -163,15 +165,15 @@
 
 - (void)show {
   [self setNeedsDisplay];
+  CGRect frame = self.contentView.frame;
+  frame.origin.x = 0;
   switch (_option.popoverType) {
     case ASPopoverTypeUp: {
-      CGRect frame = self.contentView.frame;
       frame.origin.y = 0.0;
       self.contentView.frame = frame;
     } break;
       
     case ASPopoverTypeDown: {
-      CGRect frame = self.contentView.frame;
       frame.origin.y = _option.arrowSize.height;
       self.contentView.frame = frame;
     } break;
@@ -256,13 +258,13 @@
 #pragma - override
 
 - (void)drawRect:(CGRect)rect {
-  #define ArrowAddLineToPoint(x, y)  [arrow addLineToPoint:CGPointMake(x, y)]
-  #define radians(x) [self radiansDerees:x]
-  #define selfWidth self.bounds.size.width
-  #define selfHeight self.bounds.size.height
-  #define selfArrowWidth _option.arrowSize.width
-  #define selfArrowHeight _option.arrowSize.height
-  #define selfCornerRadius _option.cornerRadius
+#define ArrowAddLineToPoint(x, y)  [arrow addLineToPoint:CGPointMake(x, y)]
+#define radians(x) [self radiansDerees:x]
+#define selfWidth self.bounds.size.width
+#define selfHeight self.bounds.size.height
+#define selfArrowWidth _option.arrowSize.width
+#define selfArrowHeight _option.arrowSize.height
+#define selfCornerRadius _option.cornerRadius
   [super drawRect:rect];
   UIBezierPath *arrow = [UIBezierPath bezierPath];
   UIColor *color = _option.popoverColor;
@@ -300,10 +302,10 @@
   [arrow fill];
 }
 
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  self.contentView.frame = self.bounds;
-}
+//- (void)layoutSubviews {
+//  [super layoutSubviews];
+//  self.contentView.frame = self.bounds;
+//}
 
 - (BOOL)accessibilityPerformEscape {
   [self dismiss];

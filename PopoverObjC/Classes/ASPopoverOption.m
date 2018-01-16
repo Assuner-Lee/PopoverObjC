@@ -17,8 +17,9 @@
     _animationOut = 0.3;
     _cornerRadius = 2.0;
     _sideEdge = 5.0;
-    _autoAjustDirection = NO;
-    _popoverType = ASPopoverTypeDown;
+    _autoAjustDirection = YES;
+    _popoverType = ASPopoverTypeUp;
+    _preferedType = ASPopoverTypeUp;
     _blackOverlayColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     _popoverColor = [UIColor lightGrayColor];
     _dismissOnBlackOverlayTap = YES;

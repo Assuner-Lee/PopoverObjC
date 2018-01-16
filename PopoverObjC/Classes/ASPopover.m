@@ -55,11 +55,17 @@
   if (_option.autoAjustDirection) {
     CGPoint downPoint = [self arrowPointWithView:contentView fromView:fromView inView:inView popoverType:ASPopoverTypeDown];
     CGPoint upPoint = [self arrowPointWithView:contentView fromView:fromView inView:inView popoverType:ASPopoverTypeUp];
-    if ((downPoint.y + _option.arrowSize.height + contentView.bounds.size.height > inView.bounds.size.height) && (upPoint.y - _option.arrowSize.height - contentView.bounds.size.height > 0)) {
+    BOOL canBeUp = (upPoint.y - _option.arrowSize.height - contentView.bounds.size.height > 0);
+    BOOL canBeDown = downPoint.y + _option.arrowSize.height + contentView.bounds.size.height < inView.bounds.size.height;
+    
+    if (canBeUp && !canBeDown) {
       _option.popoverType = ASPopoverTypeUp;
-    } else {
+    } else if (!canBeUp && canBeDown) {
       _option.popoverType = ASPopoverTypeDown;
+    } else {
+      _option.popoverType = _option.preferedType;
     }
+    
   }
   CGPoint point = [self arrowPointWithView:contentView fromView:fromView inView:inView popoverType:_option.popoverType];
   if (self.option.highlightFromView) {
@@ -148,7 +154,6 @@
 }
 
 #pragma - private
-
 
 - (void)createHighlightLayerFromView:(UIView *)fromView inView:(UIView *)inView {
   UIBezierPath *path = [UIBezierPath bezierPathWithRect:inView.bounds];

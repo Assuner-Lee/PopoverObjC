@@ -32,8 +32,8 @@
 - (ASPopover *)btnPopover {
   if (!_btnPopover) {
     ASPopoverOption *option = [[ASPopoverOption alloc] init];
-    option.popoverType = ASPopoverTypeUp;
-    option.autoAjustDirection = NO;
+    option.autoAjustDirection = YES;
+    option.preferedType = ASPopoverTypeDown;
     option.arrowSize = CGSizeMake(9, 6);
     option.blackOverlayColor = [UIColor clearColor];
     option.popoverColor = [UIColor lightGrayColor];

@@ -10,7 +10,7 @@
 typedef NS_ENUM(NSInteger, ASPopoverType) {
   ASPopoverTypeUp = 0,
   ASPopoverTypeDown,
-};
+};   
 
 @interface ASPopoverOption : NSObject
 

@@ -9,7 +9,7 @@
 
 @interface ASPopover ()
 
-@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, weak) UIView *containerView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, assign) CGPoint arrowShowPoint;
 
